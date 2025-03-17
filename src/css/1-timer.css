@@ -24,6 +24,11 @@ button {
   margin-right: auto;
   margin-left: auto;
   padding: 16px 24px;
+  background-color: #274e13;
+  color: white;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 24px;
 }
 
 .timer {
@@ -32,7 +37,7 @@ button {
   justify-content: center;
   gap: 24px;
   margin-top: 32px;
-  border: 1px solid blueviolet;
+  border: 1px solid #274e13;
   border-radius: 12px;
 }
 

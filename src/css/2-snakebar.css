@@ -1,0 +1,51 @@
+.form {
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.form input[type='number'],
+.form fieldset,
+.form button {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form input[type='number'] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form fieldset {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.form label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.form button {
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #4c72ff;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}

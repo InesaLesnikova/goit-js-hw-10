@@ -13,48 +13,48 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 // `❌ Rejected promise in ${delay}ms`
 
+const form = document.querySelector('form');
 const inputDelay = document.querySelector('input[name="delay"]');
 const inputFulfilled = document.querySelector('input[value="fulfilled"]');
 const inputRejected = document.querySelector('input[value="rejected"]');
-const btnSubmit = document.querySelector('button[type="submit"]');
 
-btnSubmit.addEventListener('click', sendDelay);
+form.addEventListener('submit', sendDelay);
+
 function sendDelay(event) {
-  event.preventDefault();
+  event.preventDefault(); // Запобігає перезавантаженню сторінки
 
   const delayValue = Number(inputDelay.value);
-  const isInputFulfilled = inputFulfilled.checked;
+  const isFulfilled = inputFulfilled.checked; // Перевіряємо, яка кнопка вибрана
 
-  return userDelayValue(delayValue, isInputFulfilled);
+  userDelayValue(delayValue, isFulfilled)
+    .then(delay => {
+      iziToast.success({
+        title: 'Success',
+        message: `✅ Fulfilled promise in ${delay}ms`,
+        position: 'topRight',
+        color: 'green',
+      });
+      console.log(`✅ Fulfilled promise in ${delay}ms`);
+    })
+    .catch(delay => {
+      iziToast.error({
+        title: 'Error',
+        message: `❌ Rejected promise in ${delay}ms`,
+        position: 'topRight',
+        color: 'red',
+      });
+      console.log(`❌ Rejected promise in ${delay}ms`);
+    });
 }
 
-function userDelayValue(delayValue, isInputFulfilled) {
-  let promise = new Promise((resolve, reject) => {
-    if (isInputFulfilled) {
-      setTimeout(() => {
-        resolve(delayValue);
-      }, delayValue);
-    }
-    if (reject) {
-      setTimeout(() => {
-        reject(delayValue);
-      }, delayValue);
-    }
+function userDelayValue(delay, isFulfilled) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (isFulfilled) {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay);
   });
-
-  promise
-    .then(resolve => {
-      iziToast.success({
-        color: 'green',
-        position: 'topRight',
-        message: `✅ Fulfilled promise in ${delayValue}ms`,
-      });
-    })
-    .catch(reject => {
-      iziToast.error({
-        color: 'red',
-        position: 'topRight',
-        message: `❌ Rejected promise in ${delayValue}ms`,
-      });
-    });
 }

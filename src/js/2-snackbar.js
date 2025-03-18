@@ -21,10 +21,10 @@ const inputRejected = document.querySelector('input[value="rejected"]');
 form.addEventListener('submit', sendDelay);
 
 function sendDelay(event) {
-  event.preventDefault(); // Запобігає перезавантаженню сторінки
+  event.preventDefault();
 
   const delayValue = Number(inputDelay.value);
-  const isFulfilled = inputFulfilled.checked; // Перевіряємо, яка кнопка вибрана
+  const isFulfilled = inputFulfilled.checked;
 
   userDelayValue(delayValue, isFulfilled)
     .then(delay => {
